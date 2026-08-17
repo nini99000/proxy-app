@@ -1,13 +1,13 @@
-// app.js - منطق اپلیکیشن پروکسی تلگرام (GitHub Pages version)
-// پروکسی‌ها از همون فایل proxies.json (توی ریپو) خونده میشه
+// app.js - منطق اپلیکیشن پروکسی تلگرام (jsDelivr version)
+// پروکسی‌ها از طریق jsDelivr CDN لود میشه (از ایران باز میشه)
+
+const CDN = "https://cdn.jsdelivr.net/gh/nini99000/proxy-app@main/proxies.json";
 
 async function loadProxies(force = false) {
   const status = document.getElementById("status");
   status.textContent = "⏳ در حال دریافت پروکسی‌ها...";
   try {
-    // کش جلوگیری
-    const url = `proxies.json?t=${Date.now()}`;
-    const res = await fetch(url);
+    const res = await fetch(`${CDN}?t=${Date.now()}`);
     const data = await res.json();
     renderProxies(data.proxies || []);
     status.textContent = `✅ ${data.proxies.length} پروکسی سالم آماده‌ست`;
@@ -38,7 +38,7 @@ async function getRandom() {
   const status = document.getElementById("status");
   status.textContent = "⏳ در حال انتخاب...";
   try {
-    const res = await fetch(`proxies.json?t=${Date.now()}`);
+    const res = await fetch(`${CDN}?t=${Date.now()}`);
     const data = await res.json();
     const proxies = data.proxies || [];
     if (proxies.length) {
