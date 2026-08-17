@@ -1,7 +1,7 @@
 // app.js - منطق اپلیکیشن پروکسی تلگرام (jsDelivr version)
-// پروکسی‌ها از طریق jsDelivr CDN لود میشه (از ایران باز میشه)
-
 const CDN = "https://cdn.jsdelivr.net/gh/nini99000/proxy-app@main/proxies.json";
+
+let currentProxy = null;
 
 async function loadProxies(force = false) {
   const status = document.getElementById("status");
@@ -9,8 +9,9 @@ async function loadProxies(force = false) {
   try {
     const res = await fetch(`${CDN}?t=${Date.now()}`);
     const data = await res.json();
-    renderProxies(data.proxies || []);
-    status.textContent = `✅ ${data.proxies.length} پروکسی سالم آماده‌ست`;
+    window._proxies = data.proxies || [];
+    renderProxies(window._proxies);
+    status.textContent = `✅ ${window._proxies.length} پروکسی سالم آماده‌ست`;
   } catch (e) {
     status.textContent = "❌ خطا در دریافت پروکسی‌ها";
   }
@@ -24,14 +25,29 @@ function renderProxies(proxies) {
 
   proxies.forEach((p, i) => {
     const li = document.createElement("li");
+    const copyText = `${p.server}:${p.port}`;
     li.innerHTML = `
       <div class="info">
         <div class="srv">${i + 1}. ${p.server}:${p.port}</div>
       </div>
-      <a class="test" href="${p.link}" target="_blank">تست</a>
+      <div class="row">
+        <button class="mini" onclick="pickProxy(${i})">انتخاب</button>
+        <button class="mini" onclick="copyText('${copyText.replace(/'/g, "\\'")}')">کپی</button>
+      </div>
     `;
     list.appendChild(li);
   });
+}
+
+function pickProxy(i) {
+  const p = window._proxies[i];
+  if (!p) return;
+  currentProxy = p;
+  document.getElementById("proxy-addr").textContent = `${p.server}:${p.port}`;
+  document.getElementById("proxy-secret").textContent = p.secret ? `Secret: ${p.secret}` : "";
+  document.getElementById("proxy-link").href = p.link;
+  document.getElementById("proxy-card").classList.remove("hidden");
+  document.getElementById("status").textContent = `🎲 پروکسی ${i + 1} انتخاب شد`;
 }
 
 async function getRandom() {
@@ -42,11 +58,8 @@ async function getRandom() {
     const data = await res.json();
     const proxies = data.proxies || [];
     if (proxies.length) {
-      const p = proxies[Math.floor(Math.random() * proxies.length)];
-      document.getElementById("proxy-addr").textContent = `${p.server}:${p.port}`;
-      document.getElementById("proxy-link").href = p.link;
-      document.getElementById("proxy-card").classList.remove("hidden");
-      status.textContent = "🎲 یه پروکسی تصادفی برات آوردم";
+      const idx = Math.floor(Math.random() * proxies.length);
+      pickProxy(idx);
     } else {
       status.textContent = "❌ پروکسی در دسترس نیست";
     }
@@ -55,12 +68,26 @@ async function getRandom() {
   }
 }
 
-function copyAddr() {
-  const addr = document.getElementById("proxy-addr").textContent;
+function copyText(txt) {
   if (navigator.clipboard) {
-    navigator.clipboard.writeText(addr);
-    alert("آدرس کپی شد:\n" + addr);
+    navigator.clipboard.writeText(txt);
+    alert("کپی شد:\n" + txt);
+  } else {
+    // فال‌بک
+    const ta = document.createElement("textarea");
+    ta.value = txt;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+    alert("کپی شد:\n" + txt);
   }
+}
+
+function copyAddr() {
+  if (!currentProxy) return;
+  const full = `Server: ${currentProxy.server}\nPort: ${currentProxy.port}\nSecret: ${currentProxy.secret || ""}`;
+  copyText(full);
 }
 
 document.getElementById("btn-random").addEventListener("click", getRandom);

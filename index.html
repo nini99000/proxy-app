@@ -15,7 +15,7 @@
 <body>
   <header>
     <h1>📱 پروکسی تلگرام</h1>
-    <p id="status">در حال بارگذاری...</p>
+    <p id="status">در حال بازگذاری...</p>
   </header>
 
   <main>
@@ -26,8 +26,19 @@
 
     <div id="proxy-card" class="card hidden">
       <div class="addr" id="proxy-addr"></div>
-      <a id="proxy-link" class="proxy-link" href="#">🌐 برای تست و افزودن پروکسی اینجا بزن</a>
-      <button id="btn-copy" class="btn small">📋 کپی آدرس</button>
+      <div class="secret" id="proxy-secret"></div>
+      <div class="row">
+        <button id="btn-copy" class="btn small">📋 کپی آدرس</button>
+        <a id="proxy-link" class="proxy-link" href="#">🌐 باز کردن در تلگرام</a>
+      </div>
+    </div>
+
+    <div class="help">
+      <p><b>چطوری وصل کنی:</b></p>
+      <p>۱. دکمه «📋 کپی آدرس» رو بزن</p>
+      <p>۲. تلگرام رو باز کن → تنظیمات → داده و پیام‌رسان → پروکسی → افزودن پروکسی → MTProto</p>
+      <p>۳. آدرس سرور و پورت رو که کپی کردی پیست کن (Secret هم توی بخش مخفی)</p>
+      <p>۴. ذخیره کن → تلگرام وصل میشه ✅</p>
     </div>
 
     <h2>📋 لیست پروکسی‌ها (<span id="count">0</span>)</h2>
@@ -35,7 +46,7 @@
   </main>
 
   <footer>
-    <p>این اپ پروکسی‌های سالم رو از کانال‌های تلگرام میاره. روی لینک پروکسی بزن → تلگرام خودش تست می‌کنه.</p>
+    <p>این اپ پروکسی‌های سالم رو از کانال‌های تلگرام میاره. هر ۵ دقیقه آپدیت میشه.</p>
   </footer>
 
   <script src="app.js"></script>

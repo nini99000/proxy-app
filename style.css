@@ -106,3 +106,14 @@ footer {
   max-width: 600px;
   margin: 0 auto;
 }
+
+.secret { font-size: 11px; opacity: 0.7; word-break: break-all; margin-bottom: 10px; }
+.row { display: flex; gap: 8px; align-items: center; }
+.btn.small { flex: 1; }
+.proxy-link { flex: 2; background: var(--tg); color: #fff; text-decoration: none; padding: 10px; border-radius: 8px; text-align: center; font-size: 13px; }
+
+.help { background: var(--card); border-radius: 8px; padding: 12px; margin-bottom: 16px; font-size: 13px; line-height: 1.6; }
+.help p { margin-bottom: 4px; }
+
+.mini { background: #243447; color: #fff; border: none; padding: 6px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; }
+.mini:active { opacity: 0.7; }
