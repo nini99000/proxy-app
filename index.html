@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0088cc">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <title>پروکسی تلگرام</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>📱 پروکسی تلگرام</h1>
+    <p id="status">در حال بارگذاری...</p>
+  </header>
+
+  <main>
+    <div class="actions">
+      <button id="btn-random" class="btn primary">🎲 یه پروکسی تصادفی</button>
+      <button id="btn-refresh" class="btn">🔄 بروزرسانی</button>
+    </div>
+
+    <div id="proxy-card" class="card hidden">
+      <div class="addr" id="proxy-addr"></div>
+      <a id="proxy-link" class="proxy-link" href="#">🌐 برای تست و افزودن پروکسی اینجا بزن</a>
+      <button id="btn-copy" class="btn small">📋 کپی آدرس</button>
+    </div>
+
+    <h2>📋 لیست پروکسی‌ها (<span id="count">0</span>)</h2>
+    <ul id="proxy-list" class="list"></ul>
+  </main>
+
+  <footer>
+    <p>این اپ پروکسی‌های سالم رو از کانال‌های تلگرام میاره. روی لینک پروکسی بزن → تلگرام خودش تست می‌کنه.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

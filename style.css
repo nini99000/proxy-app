@@ -1,0 +1,108 @@
+:root {
+  --tg: #0088cc;
+  --bg: #0e1621;
+  --card: #17212b;
+  --text: #ffffff;
+  --green: #2ecc71;
+  --red: #e74c3c;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, "Segoe UI", Tahoma, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding-bottom: 20px;
+}
+
+header {
+  background: var(--tg);
+  padding: 18px 16px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+}
+
+header h1 { font-size: 20px; }
+header p { font-size: 13px; opacity: 0.9; margin-top: 4px; }
+
+main { padding: 16px; max-width: 600px; margin: 0 auto; }
+
+.actions { display: flex; gap: 10px; margin-bottom: 16px; }
+
+.btn {
+  flex: 1;
+  background: var(--card);
+  color: var(--text);
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+}
+.btn.primary { background: var(--tg); }
+.btn.small { flex: none; padding: 8px 12px; font-size: 13px; margin-top: 10px; }
+.btn:active { opacity: 0.7; }
+
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+.hidden { display: none; }
+
+.addr {
+  font-family: monospace;
+  font-size: 16px;
+  word-break: break-all;
+  margin-bottom: 12px;
+  color: var(--green);
+}
+
+.proxy-link {
+  display: block;
+  background: var(--tg);
+  color: #fff;
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 14px;
+}
+
+h2 { font-size: 16px; margin: 16px 0 10px; }
+
+.list { list-style: none; }
+.list li {
+  background: var(--card);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.list .info { flex: 1; word-break: break-all; }
+.list .info .srv { font-family: monospace; font-size: 14px; }
+.list a.test {
+  background: var(--tg);
+  color: #fff;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+footer {
+  padding: 16px;
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
